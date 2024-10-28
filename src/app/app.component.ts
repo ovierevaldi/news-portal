@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NewsSmallComponent } from "./components/news-small/news-small.component";
-import { environment } from '../environments/environment';
 import { ApiService } from './services/api.service';
 
 @Component({
@@ -13,9 +12,8 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent {
   title = 'news-portal';
+  data: any = {};
 
   constructor(private api: ApiService){
-    console.log(environment.production);
-    this.api.fetch(); 
   }
 }
