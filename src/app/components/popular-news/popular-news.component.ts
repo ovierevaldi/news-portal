@@ -25,7 +25,7 @@ export class LatestNewsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.fetchData(this.currentDuration)
+    // this.fetchData(this.currentDuration)
   }
 
    async fetchData(duration: string){

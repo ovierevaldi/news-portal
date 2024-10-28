@@ -4,8 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-newest-news',
   standalone: true,
   imports: [],
-  templateUrl: './newest-news.component.html',
-  styleUrl: './newest-news.component.css'
+  templateUrl: './newest-news.component.html'
 })
 export class NewestNewsComponent {
 

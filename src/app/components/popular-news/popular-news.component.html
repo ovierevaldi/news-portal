@@ -1,12 +1,12 @@
-<div>
-    <div class="flex items-center justify-between mb-4">
-        <p class="font-bold text-2xl">Popular News</p>
+<div class="lg:px-10 lg:py-8">
+    <div class="mb-4 lg:mb-12">
+        <p class="font-bold text-2xl lg:text-3xl mb-6">Popular News</p>
         
         <select 
             id="popular-news-duration"
             [value]="currentDuration"
             (change)="onChangeDuration($event)"
-            class="border rounded-md border-black border-opacity-35 p-1">
+            class="border rounded-md bg-secondary-one p-1 lg:p-3 lg:text-xl min-w-48">
             <option value="1">Today</option>
             <option value="7">This Week</option>
             <option value="30">This Month</option>
@@ -14,7 +14,7 @@
         
     </div>
    
-    @if(!loadingService.get()){
+    <!-- @if(!loadingService.get()){
         <div class="grid grid-cols-2 gap-y-8 gap-x-4">
             @for (news of popularNewsList; track $index) {
                 <app-news-small [news]="news"></app-news-small>
@@ -23,6 +23,19 @@
     }
     @else {
         <p class="text-center text-sky-500">Loading...</p>
-    }
+    } -->
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-y-14">
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit place-self-center"></app-news-small>
+    </div>
 
 </div>

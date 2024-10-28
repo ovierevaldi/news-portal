@@ -1,7 +1,18 @@
-<div class="w-44">
+<!-- <div class="w-44">
     <img [src]="url" alt="" class="rounded-xl w-40">
     <p class="font-bold font-serif py-2 max-h-20 overflow-hidden whitespace-pre-wrap text-ellipsis">{{news?.title}}</p>
     <div class="flex text-[0.5rem]">
         <span class="w-1/2">{{news?.updated | date: 'mediumDate'}}</span> <span class="w-1/2">{{news?.source}}</span>
+    </div>
+</div> -->
+
+<div class="w-44 lg:w-[300px] ">
+    <img src="./no_image.jpg" alt="" class="rounded-xl w-40 lg:w-[90%] mx-auto border mb-4 translate-y-2">
+    <p 
+        class="font-bold font-serif py-2 lg:py-4 text-2xl">
+        Title
+    </p>
+    <div class="flex gap-x-9 text-[0.5rem] lg:text-base justify-end ">
+        <p class="">Updated</p> <p class="">Source</p>
     </div>
 </div>
