@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { retryWhen } from 'rxjs';
+import { retryWhen, throttleTime } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +25,13 @@ export class ApiService {
   }
 
   getMostPopular(duration: number){
-    this.http.get(environment.API_URL + `/svc/mostpopular/v2/viewed/${duration}.json?api-key=${environment.api_keys}`)
-    .subscribe(response => {
-      console.log(response)
-      return response;
+    return new Promise((resolve, reject) =>{
+      this.http.get(environment.API_URL + `/svc/mostpopular/v2/viewed/${duration}.json?api-key=${environment.api_keys}`)
+      .pipe(throttleTime(10000))
+      .subscribe(response => {
+        console.log('adaddadwadwad')
+        resolve(response)
+      })
     })
   }
 
