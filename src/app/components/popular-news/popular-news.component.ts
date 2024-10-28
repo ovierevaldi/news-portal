@@ -20,7 +20,7 @@ export class LatestNewsComponent implements OnInit{
   popularNewsList: NewsData[] = [];
   
 
-  constructor(private api: ApiService, private localCache: LocalCacheService, public loadingService: LoadingService){
+  constructor(private api: ApiService, public loadingService: LoadingService){
     this.currentDuration = '30'
   }
 
@@ -35,7 +35,7 @@ export class LatestNewsComponent implements OnInit{
         this.setPopularNewsList(data.results);
     } 
     catch (error) { 
-      alert('Cannot fetch api!')
+      console.log('Cannot fetch api,' + error)
     }
     this.loadingService.hide();
   }

@@ -1,7 +1,7 @@
 <div class="w-44">
     <img [src]="url" alt="" class="rounded-xl w-40">
     <p class="font-bold font-serif py-2 max-h-20 overflow-hidden whitespace-pre-wrap text-ellipsis">{{news?.title}}</p>
-    <div class="flex text-sm">
+    <div class="flex text-[0.5rem]">
         <span class="w-1/2">{{news?.updated | date: 'mediumDate'}}</span> <span class="w-1/2">{{news?.source}}</span>
     </div>
 </div>
