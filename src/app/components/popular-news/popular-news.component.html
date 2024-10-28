@@ -1,12 +1,12 @@
 <div class="lg:px-10 lg:py-8">
-    <div class="mb-4 lg:mb-12">
-        <p class="font-bold text-2xl lg:text-3xl mb-6">Popular News</p>
+    <div class="mb-4 lg:mb-12 flex justify-between lg:block">
+        <p class="font-bold text-lg lg:text-3xl mb-3 lg:mb-6">Popular News</p>
         
         <select 
             id="popular-news-duration"
             [value]="currentDuration"
             (change)="onChangeDuration($event)"
-            class="border rounded-md bg-secondary-one p-1 lg:p-3 lg:text-xl min-w-48">
+            class="border rounded-md bg-secondary-one text-xs p-1 lg:p-3 lg:text-xl h-8 lg:h-12 w-24 lg:min-w-48">
             <option value="1">Today</option>
             <option value="7">This Week</option>
             <option value="30">This Month</option>
@@ -26,16 +26,16 @@
     } -->
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-y-14">
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
-        <app-news-small class="w-fit place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
     </div>
 
 </div>
