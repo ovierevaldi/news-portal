@@ -13,14 +13,15 @@
         </select>
         
     </div>
-
-    <div class="grid grid-cols-2 gap-y-8 gap-x-4">
-        @for (news of popularNewsList; track $index) {
-            <app-news-small [news]="news"></app-news-small>
-        }
-    </div>
-    
-    @if(loadingService.get()){
+   
+    @if(!loadingService.get()){
+        <div class="grid grid-cols-2 gap-y-8 gap-x-4">
+            @for (news of popularNewsList; track $index) {
+                <app-news-small [news]="news"></app-news-small>
+            }
+        </div>
+    }
+    @else {
         <p class="text-center text-sky-500">Loading...</p>
     }
 

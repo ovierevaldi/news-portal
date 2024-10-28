@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { retryWhen, throttleTime } from 'rxjs';
 import { LocalCacheService } from './local-cache.service';
+import { getMostPopularURL } from '../../lib/helper';
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +26,18 @@ export class ApiService {
     })
   }
 
-  getMostPopular(duration: number){
-    console.log("GETTING DATA FROM API")
+  getMostPopular(duration: string){
     return new Promise((resolve, reject) =>{
-      const url = environment.API_URL + `/svc/mostpopular/v2/viewed/${duration}.json?api-key=${environment.api_keys}`
+      const url = getMostPopularURL(duration)
       this.http.get(url)
-      .subscribe((response: any) => {
-        resolve(response)
-      })
+      .subscribe(
+        (response: any) => {
+          resolve(response)
+        },
+        (error: any) => {
+          reject(error); // Reject the promise with the error
+        }
+      )
     })
   }
 

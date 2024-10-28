@@ -5,5 +5,6 @@ export function getNoImage(){
 }
 
 export function getMostPopularURL(duration: string){
-   return environment.API_URL + `/svc/mostpopular/v2/viewed/${Number(duration)}.json?api-key=${environment.api_keys}`;
+   const d = +duration
+   return environment.API_URL + `/svc/mostpopular/v2/viewed/${d}.json?api-key=${environment.api_keys}`;
 }
