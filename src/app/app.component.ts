@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NewsSmallComponent } from "./components/news-small/news-small.component";
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,8 @@ import { NewsSmallComponent } from "./components/news-small/news-small.component
 })
 export class AppComponent {
   title = 'news-portal';
+
+  constructor(){
+    console.log(environment.production)
+  }
 }
