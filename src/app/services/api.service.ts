@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   getMostPopular(duration: number){
-    console.log('adwa')
+    console.log("GETTING DATA FROM API")
     return new Promise((resolve, reject) =>{
       const url = environment.API_URL + `/svc/mostpopular/v2/viewed/${duration}.json?api-key=${environment.api_keys}`
       this.http.get(url)

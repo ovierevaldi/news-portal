@@ -3,7 +3,7 @@ export type NewsData = {
     title: string;
     abstract: string;
     section: string;
-    media: any
+    media: any[];
     published_date: Date
     updated: Date
     source: string

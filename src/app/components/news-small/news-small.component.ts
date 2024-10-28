@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NewsData } from '../../../../types/news.model';
 import { DatePipe } from '@angular/common';
+import { getNoImage } from '../../../lib/helper';
 
 @Component({
   selector: 'app-news-small',
@@ -9,6 +10,27 @@ import { DatePipe } from '@angular/common';
   templateUrl: './news-small.component.html',
   styleUrl: './news-small.component.css'
 })
-export class NewsSmallComponent {
+export class NewsSmallComponent implements OnChanges {
   @Input() news: NewsData = null;
+
+  url: string = '';
+
+  //Set image thumbnail
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['news']) {
+      const currentNews = changes['news'].currentValue;
+      const media = currentNews.media;
+
+      if(media.length > 0){
+        this.setCoverImage(media[0]['media-metadata']);
+      }
+      else{
+        this.url = getNoImage();
+      }
+    }
+  }
+
+  setCoverImage(mediaMetaData: any[]){
+    this.url = mediaMetaData[1]['url']
+  }
 }

@@ -5,19 +5,8 @@ import { Inject, PLATFORM_ID } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LocalCacheService implements OnInit {
+export class LocalCacheService {
     constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
-
-    ngOnInit(): void {
-        if (isPlatformBrowser(this.platformId)) {
-        console.log('a')
-          // Access localStorage only if we are in the browser
-          localStorage.setItem('key', 'value');
-        }
-        else{
-            console.log('b')
-        }
-    }
 
     getData(url: string){
         if (isPlatformBrowser(this.platformId)) {

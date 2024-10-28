@@ -21,24 +21,11 @@ export class LatestNewsComponent {
   constructor(private api: ApiService, private localCache: LocalCacheService){
     
     const url: string = environment.API_URL + `/svc/mostpopular/v2/viewed/${this.duration}.json?api-key=${environment.api_keys}`;
-
-    // // Check if cache exsist, get from cache
-    // if(this.localCache.getData(url) != null){
-    //   console.log('has cache')
-    //   this.setPopularNewsList(this.localCache.getData(url));
-    // }
-    // // else get from API
-    // else{
-    //   console.log('no cache')
-    //   this.api.getMostPopular(7).then((data: any) => {
-    //     this.setPopularNewsList(data.results);
-    //     this.localCache.setData(url, data.results)
-    //   })
-    // }
+    // Check if cache is exsist
     if(this.localCache.getData(url) != null){
-      console.log('has cache')
       this.setPopularNewsList(this.localCache.getData(url));
     }
+    // else get from API
     else{
       this.api.getMostPopular(7).then((data: any) => {
         this.setPopularNewsList(data.results);
@@ -48,6 +35,7 @@ export class LatestNewsComponent {
    }
 
    setPopularNewsList(bulkData: any[]){
+    console.log(bulkData)
     bulkData.forEach(element => {
       this.popularNewsList.push(element as NewsData);
     });
