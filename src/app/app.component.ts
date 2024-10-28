@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NewsSmallComponent } from "./components/news-small/news-small.component";
 import { ApiService } from './services/api.service';
-import { LatestNewsComponent } from "./components/latest-news/latest-news.component";
+import { LatestNewsComponent } from "./components/popular-news/popular-news.component";
+import { LocalCacheService } from './services/local-cache.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,13 @@ export class AppComponent {
   title = 'news-portal';
   data: any = {};
 
-  constructor(private api: ApiService){
+  // Clear temp local storage
+  @HostListener('window:beforeunload', ['$event'])
+    clearLocalStorage(event: Event): void {
+    // Clear the localStorage
+    localStorage.clear();
+  }
+  
+  constructor(private api: ApiService, private localCache: LocalCacheService){
   }
 }

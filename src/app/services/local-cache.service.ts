@@ -22,10 +22,14 @@ export class LocalCacheService {
     }
 
     deleteCache(url: string){
-        localStorage.removeItem(url)
+        if (isPlatformBrowser(this.platformId)) {
+            localStorage.removeItem(url)
+        }
     }
 
     clearCache(){
-        localStorage.clear();
+        if (isPlatformBrowser(this.platformId)) {
+            localStorage.clear();
+        }
     }
 }

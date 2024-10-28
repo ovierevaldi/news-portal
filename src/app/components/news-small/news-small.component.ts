@@ -8,7 +8,7 @@ import { getNoImage } from '../../../lib/helper';
   standalone: true,
   imports: [DatePipe],
   templateUrl: './news-small.component.html',
-  styleUrl: './news-small.component.css'
+  styles: ''
 })
 export class NewsSmallComponent implements OnChanges {
   @Input() news: NewsData = null;

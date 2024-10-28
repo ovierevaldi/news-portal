@@ -1,0 +1,27 @@
+<div>
+    <div class="flex items-center justify-between  mb-4">
+        <p class="font-bold text-2xl">Popular News</p>
+        
+        <select 
+            id="popular-news-duration"
+            [value]="currentDuration"
+            (change)="onChangeDuration($event)"
+            class="border rounded-md border-black border-opacity-35 p-1">
+            <option value="1">Today</option>
+            <option value="7">This Week</option>
+            <option value="30">This Month</option>
+        </select>
+        
+    </div>
+
+    <div class="grid grid-cols-2 gap-y-8 gap-x-4">
+        @for (news of popularNewsList; track $index) {
+            <app-news-small [news]="news"></app-news-small>
+        }
+    </div>
+    
+    @if(loadingService.get()){
+        <p class="text-center text-sky-500">Loading...</p>
+    }
+
+</div>
