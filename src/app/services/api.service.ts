@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { retryWhen, throttleTime } from 'rxjs';
+import { LocalCacheService } from './local-cache.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +26,11 @@ export class ApiService {
   }
 
   getMostPopular(duration: number){
+    console.log('adwa')
     return new Promise((resolve, reject) =>{
-      this.http.get(environment.API_URL + `/svc/mostpopular/v2/viewed/${duration}.json?api-key=${environment.api_keys}`)
-      .pipe(throttleTime(10000))
-      .subscribe(response => {
-        console.log('adaddadwadwad')
+      const url = environment.API_URL + `/svc/mostpopular/v2/viewed/${duration}.json?api-key=${environment.api_keys}`
+      this.http.get(url)
+      .subscribe((response: any) => {
         resolve(response)
       })
     })
