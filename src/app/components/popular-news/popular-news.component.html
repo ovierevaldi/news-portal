@@ -6,7 +6,7 @@
             id="popular-news-duration"
             [value]="currentDuration"
             (change)="onChangeDuration($event)"
-            class="border rounded-md bg-secondary-one text-xs p-1 lg:p-3 lg:text-xl h-8 lg:h-12 w-24 lg:min-w-48">
+            class="border rounded-md bg-secondary-one text-xs p-1 lg:p-2 lg:text-base h-8 lg:h-10 w-24 lg:min-w-40">
             <option value="1">Today</option>
             <option value="7">This Week</option>
             <option value="30">This Month</option>
@@ -25,17 +25,17 @@
         <p class="text-center text-sky-500">Loading...</p>
     } -->
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-y-14">
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
-        <app-news-small class="w-fit lg:place-self-center"></app-news-small>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-3 sm:gap-y-8 sm:gap-x-5 md:gap-y-10 md:gap-x-8 lg:gap-y-12 lg:gap-x-10">
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
+        <app-news-small class="lg:place-self-center"></app-news-small>
     </div>
 
 </div>
