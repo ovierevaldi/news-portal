@@ -25,10 +25,6 @@ export class CarouselComponent {
         this.currentIndex--;
         this.slide(this.currentIndex)
       }
-
-      if(this.currentIndex <= 0){
-        
-      }
   }
 
   slide(index: number){
