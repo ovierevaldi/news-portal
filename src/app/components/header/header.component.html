@@ -10,9 +10,15 @@
         </div>
     
         <div class="flex items-center gap-x-3 md:gap-x-5">
-            <button>
-                <img src="./icons/search.svg" alt="" class="h-5 md:h-6 lg:h-7 xl:h-8 2xl:h-8 lg:mr-6 2xl:mr-12">
-            </button>
+           <div class="flex gap-x-4">
+                <input 
+                    type="text" 
+                    placeholder="Search..."
+                    class="border focus:border-dashed border-primary-two border-opacity-40 rounded-md py-2 px-4 bg-secondary-one min-w-[250px] placeholder:text-primary-three focus:outline-none focus:border-opacity-100">
+                <button>
+                    <img src="./icons/search.svg" alt="" class="h-5 md:h-6 lg:h-7 xl:h-8 2xl:h-8 lg:mr-6 2xl:mr-12">
+                </button>
+           </div>
             <button class="lg:hidden">
                 <img src="./icons/bar.svg" alt="" class="h-5 md:h-6">
             </button>
