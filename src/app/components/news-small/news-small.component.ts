@@ -2,11 +2,12 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NewsData } from '../../../../types/news.model';
 import { DatePipe } from '@angular/common';
 import { getNoImage } from '../../../lib/helper';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-news-small',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './news-small.component.html',
   styles: ''
 })

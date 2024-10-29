@@ -1,21 +1,24 @@
 <header class="sticky top-0 z-10 bg-secondary-two">
     <div class="flex justify-between px-4 py-2 md:px-5 md:py-3 lg:px-6 lg:py-3 xl:px-8 xl:py-4 2xl:py-3 xl:max-w-[1366px] xl:mx-auto 2xl:max-w-screen-2xl ">
-        <div class="flex items-center md:gap-x-1 xl:gap-x-3">
-            <div class="bg-primary-one rounded-md flex items-center p-2 md:px-3 lg:px-4 xl:py-2 xl:px-4 2xl:py-3 2xl:px-5 2xl:text-lg ">
-                <span class="font-serif font-bold text-white text-xs md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl">News</span>
+        <a routerLink="/">
+            <div class="flex items-center md:gap-x-1 xl:gap-x-3">
+                <div class="bg-primary-one rounded-md flex items-center p-2 md:px-3 lg:px-4 xl:py-2 xl:px-4 2xl:py-3 2xl:px-5 2xl:text-lg ">
+                    <span class="font-serif font-bold text-white text-xs md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl">News</span>
+                </div>
+                <div class="rounded-lg flex items-center p-2 md:px-1 lg:px-3 xl:py-2 xl:px-2">
+                    <span class="font-serif font-bold text-primary-one text-xs md:text-sm lg:text-lg xl:text-xl 2xl:py-3 2xl:text-2xl">Portal</span>
+                </div>
             </div>
-            <div class="rounded-lg flex items-center p-2 md:px-1 lg:px-3 xl:py-2 xl:px-2">
-                <span class="font-serif font-bold text-primary-one text-xs md:text-sm lg:text-lg xl:text-xl 2xl:py-3 2xl:text-2xl">Portal</span>
-            </div>
-        </div>
+        </a>
     
         <div class="flex items-center gap-x-3 md:gap-x-5">
            <div class="flex gap-x-4">
                 <input 
                     type="text" 
                     placeholder="Search..."
+                    (change)="searchNews($event)"
                     class="border focus:border-dashed border-primary-two border-opacity-40 rounded-md py-2 px-4 bg-secondary-one min-w-[250px] placeholder:text-primary-three focus:outline-none focus:border-opacity-100">
-                <button>
+                <button (click)="go(keyword)">
                     <img src="./icons/search.svg" alt="" class="h-5 md:h-6 lg:h-7 xl:h-8 2xl:h-8 lg:mr-6 2xl:mr-12">
                 </button>
            </div>

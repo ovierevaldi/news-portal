@@ -1,0 +1,37 @@
+<div 
+    id="carousel-parent"
+    class="flex w-[600px] overflow-hidden relative">
+    @for (image of images; track $index) {
+        <img 
+            src="{{image}}" 
+            alt=""
+            class="carousel-child"
+        >
+    }
+
+    <div class="flex absolute w-full h-full justify-between px-4 items-center">
+        <button
+            (click)="prevSlide()"
+            class="text-xl text-primary-one bg-secondary-one bg-opacity-70 h-fit p-3 disabled:bg-primary-two"
+            [disabled]="currentIndex <= 0">
+            Prev
+        </button>
+        <button 
+            (click)="nextSlide()"
+            class="text-xl text-primary-one bg-secondary-one bg-opacity-70 h-fit p-3 disabled:bg-primary-two"
+            id="next-btn"
+            [disabled]="currentIndex >= images.length - 1">
+            Next
+        </button>
+    </div>
+
+    <div class="flex absolute w-full justify-center bottom-0 px-4 gap-x-1">
+        @for (image of images; track $index) {
+            <button 
+                class="bg-primary-two p-3 rounded-full"
+                [ngClass]="{ 'bg-white outline outline-primary-one': $index === currentIndex }"
+                (click)="slide($index)">
+            </button>
+        }
+    </div>
+</div>
