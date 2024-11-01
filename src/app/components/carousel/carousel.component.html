@@ -1,6 +1,6 @@
 <div 
     id="carousel-parent"
-    class="flex w-[600px] overflow-hidden relative">
+    class="flex overflow-hidden relative rounded-xl">
     @for (image of images; track $index) {
         <img 
             src="{{image}}" 
@@ -12,13 +12,13 @@
     <div class="flex absolute w-full h-full justify-between px-4 items-center">
         <button
             (click)="prevSlide()"
-            class="h-fit bg-primary-three bg-opacity-80 rounded-full disabled:opacity-40"
+            class="h-fit rounded-full disabled:opacity-40"
             [disabled]="currentIndex <= 0">
             <img src="./icons/arrow-left-round.svg" alt="" class="w-8 h-8">
         </button>
         <button 
             (click)="nextSlide()"
-            class="h-fit bg-primary-three bg-opacity-80 rounded-full disabled:opacity-40"
+            class="h-fit rounded-full disabled:opacity-40"
             id="next-btn"
             [disabled]="currentIndex >= images.length - 1">
             <img src="./icons/arrow-right-round.svg" alt="" class="w-8 h-8">

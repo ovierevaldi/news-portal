@@ -1,39 +1,39 @@
-<div>
-    <img src="{{currentImages}}" alt="" class="max-w-[1200px]">
-    <div 
-        class="relative max-w-[1600px] mx-auto">
+<div class="p-4">
+    <div class="mb-4">
+        <img src="{{currentImages}}" alt="" class=" rounded-lg">
+    </div>
+    <div class="relative">
         <div 
-            class="flex w-[800px] overflow-hidden" 
+            class="flex overflow-hidden" 
             id="carousel-parent">
             @for (image of images; track $index) {
                 <button 
                     (click)="updateDisplayImage($index)"
-                    class="w-[200px] flex-shrink-0 p-1 carousel-child transition-transform duration-300 ease-in-out">
+                    class="w-1/4 flex-shrink-0 carousel-child transition-transform duration-300 ease-in-out px-2 py-2">
                     <img 
                         src="{{image}}" 
                         alt=""
+                        class="rounded-md"
                         [ngClass]="{'outline outline-red-500': $index === currentIndex}">
                 </button>
             }
         </div>
-        <div class="absolute h-full flex items-center top-0">
+
+        <div class="absolute h-full flex items-center top-0 ml-2">
             <button
                 (click)="prevSlide()"
                 [disabled]="currentIndex <= 0"
-                class="bg-primary-three bg-opacity-80 rounded-full disabled:opacity-40">
-                <img src="./icons/arrow-left-round.svg" alt="" class="w-8 h-8">
+                class="disabled:opacity-40">
+                <img src="./icons/arrow-left-round.svg" alt="" class="w-10 h-10">
             </button>
         </div>
-
-        <div class="absolute h-full flex items-center top-0 right-0">
+        <div class="absolute h-full flex items-center top-0 right-0 mr-2">
             <button
                 (click)="nextSlide()"
                 [disabled]="currentIndex >= images.length - 1"
-                class="bg-primary-three bg-opacity-80 rounded-full disabled:opacity-40">
-                <img src="./icons/arrow-right-round.svg" alt="" class="w-8 h-8">
+                class="disabled:opacity-40">
+                <img src="./icons/arrow-right-round.svg" alt="" class="w-10 h-10">
             </button>
         </div>
-
-        
     </div>
 </div>
