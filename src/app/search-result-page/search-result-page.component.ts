@@ -4,23 +4,31 @@ import { NewsSmallComponent } from "../components/news-small/news-small.componen
 import { LoadingService } from '../services/loading.service';
 import { ApiService } from '../services/api.service';
 import { PaginationComponent } from "../components/pagination/pagination.component";
+import { NewsFilter } from '../../../types/news.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search-result-page',
   standalone: true,
-  imports: [NewsSmallComponent, PaginationComponent],
+  imports: [NewsSmallComponent, PaginationComponent, DatePipe],
   templateUrl: './search-result-page.component.html'
 })
 export class SearchResultPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, public loadingService: LoadingService, private apiService: ApiService, private router: Router){}
+  constructor(
+    private route: ActivatedRoute, 
+    public loadingService: LoadingService, 
+    private apiService: ApiService, 
+    private router: Router)
+  {}
 
   keyword: string = '';
   searchedFeeds: any[] = [];
   total_result : number = 0;
   currentSort: string = 'relevance';
-  start_date: Date | null = null;
+  begin_date: Date | null = null;
   end_date: Date | null = null;
+  currentFilter: NewsFilter = {begin_date: this.begin_date, end_date: this.end_date, sort: this.currentSort}
 
   disableFormButton = false;
 
@@ -29,12 +37,12 @@ export class SearchResultPageComponent implements OnInit {
     // this.searchFeed(this.keyword, 1);
   }
 
-  searchFeed(keyword: string, page: number){
+  async searchFeed(keyword: string, filter: NewsFilter, page: number){
     const formatKeyword = keyword.replaceAll(' ', '+').trim();
 
     this.loadingService.show();
 
-    this.apiService.searchFeed(formatKeyword, page)
+    this.apiService.searchFeed(formatKeyword, filter, page)
     .subscribe({
         next: (response) => {
           this.clear();
@@ -51,7 +59,8 @@ export class SearchResultPageComponent implements OnInit {
   }
 
   changeNewsPage(page: number) {
-    this.searchFeed(this.keyword, page + 1);
+  
+    this.searchFeed(this.keyword, this.currentFilter, page);
   }
 
   clear(){
@@ -63,19 +72,19 @@ export class SearchResultPageComponent implements OnInit {
     this.currentSort = e.target.value;
   }
 
-  changeStartDate(event: any) {
-    this.start_date = new Date(event.target.value)
-    this.isValidDate(this.start_date, this.end_date)
+  changeBeginDate(event: any) {
+    this.begin_date = new Date(event.target.value)
+    this.isValidDate(this.begin_date, this.end_date)
   }
 
   changeEndDate(event: any) {
     this.end_date = new Date(event.target.value)
-    this.isValidDate(this.start_date, this.end_date)
+    this.isValidDate(this.begin_date, this.end_date)
   }
 
-  isValidDate(startDate: Date | null, endDate: Date | null){
-    if(startDate != null && endDate != null){
-      if(startDate > endDate){
+  isValidDate(beginDate: Date | null, endDate: Date | null){
+    if(beginDate != null && endDate != null){
+      if(beginDate > endDate){
         this.SetError('Not a valid range date');
         this.disableFormButton = true;
       }
@@ -87,8 +96,8 @@ export class SearchResultPageComponent implements OnInit {
     }
 
     const now = new Date(Date.now())
-    if(startDate != null){
-      if(startDate != null && startDate > now){
+    if(beginDate != null){
+      if(beginDate != null && beginDate > now){
         this.SetError('Start cannot be greater than today');
         this.disableFormButton = true;
       }
@@ -122,13 +131,17 @@ export class SearchResultPageComponent implements OnInit {
       const form = document.getElementById('filter-news-form') as HTMLFormElement;
       const formData = new FormData(form);
 
-      const query = {
-        begin_date: formData.get('start_date_filter'),
-        end_date: formData.get('end_date_filter'),
-        sort: formData.get('sort_filter'),
-      }
+      const begin_date = formData.get('begin_date_filter') ? new Date(formData.get('begin_date_filter') as string) : null;
+      const end_date = formData.get('end_date_filter') ? new Date(formData.get('end_date_filter') as string) : null;
+      const sort = formData.get('sort_filter') ? formData.get('sort_filter') as string : '';
 
-      console.log(query)
+      this.currentFilter = {
+        begin_date: begin_date,
+        end_date: end_date,
+        sort: sort,
+      }
+      
+      this.searchFeed(this.keyword, this.currentFilter, 1);
   }
   
   goToURL(url: string) {

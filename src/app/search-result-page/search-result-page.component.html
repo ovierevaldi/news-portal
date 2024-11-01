@@ -9,8 +9,8 @@
                     <div>
                         <p class="text-lg">Begin:</p>
                         <input type="date" 
-                            name="start_date_filter"
-                        (change)="changeStartDate($event)"
+                            name="begin_date_filter"
+                        (change)="changeBeginDate($event)"
                         >
                     </div>
                     <div>
@@ -47,14 +47,20 @@
     @if(!loadingService.get()){
         <div class="space-y-8">
                 @for (feed of searchedFeeds; track $index) {
-                    <a class="border-b hover:underline cursor-pointer block" (click)="goToURL(feed.web_url)">
-                        <p class="font-semibold text-lg mb-2">{{feed.headline.main}}</p>
-                        <p class="text-primary-three text-sm">{{feed.abstract}}</p>
+                    <a class="border-b cursor-pointer block" (click)="goToURL(feed.web_url)">
+                        <p class="font-semibold text-lg mb-2 hover:underline">{{feed.headline.main}}</p>
+                       <div class="flex justify-between">
+                            <p class="text-primary-three text-sm hover:underline max-w-[80%] whitespace-nowrap overflow-hidden text-ellipsis">
+                                {{feed.abstract}}
+                            </p>
+                            <p class="text-primary-three text-sm">{{feed.pub_date | date: 'mediumDate': 'UTC'}}</p>
+                       </div>
                     </a>
                 }
         </div>
         <br>
     }
+    
     @else {
         <div class="flex items-center w-full justify-center">
             <button type="button" class="flex items-center rounded-lg bg-white p-2" disabled>

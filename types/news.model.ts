@@ -9,3 +9,9 @@ export type NewsData = {
     source: string
     url: string
 } | null;
+
+export type NewsFilter = {
+    begin_date: Date | null,
+    end_date: Date | null,
+    sort: string
+}
