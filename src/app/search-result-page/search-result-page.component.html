@@ -8,7 +8,7 @@
         <button class="hover:underline" (click)="toggleFilterUI()">{{filter_title}}</button>
     </div>
     
-    <div class="flex transition-all duration-200 ease-in-out max-h-[400px]" id="filter-container">
+    <div class="flex transition-all duration-300 ease-in-out max-h-[400px] mb-8" id="filter-container">
         <form class="flex gap-x-4" (submit)="applyNewsFilter($event)" id="filter-news-form">
             <div>
                 <span class="mb-2 font-semibold text-lg">Range:</span>
@@ -52,10 +52,6 @@
             </div>
         </form>
     </div>
-    
-    
-    <br>
-    <br>
     @if(!loadingService.get()){
         <div class="space-y-8">
                 @for (feed of searchedFeeds; track $index) {

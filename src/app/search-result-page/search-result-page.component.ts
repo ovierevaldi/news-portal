@@ -157,11 +157,13 @@ export class SearchResultPageComponent implements OnInit {
     if(filterContainer && this.showFilter){
       filterContainer.style.maxHeight = '200px';
       filterContainer.style.overflow = 'visible';
+      filterContainer.style.marginBottom = '2rem';
       this.filter_title = 'Hide'
     }
     else if(filterContainer && !this.showFilter){
       filterContainer.style.maxHeight = '0px';
       filterContainer.style.overflow = 'hidden';
+      filterContainer.style.margin = '0rem';
       this.filter_title = 'Show'
     }
   }
