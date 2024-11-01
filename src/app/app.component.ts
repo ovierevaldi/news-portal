@@ -8,11 +8,12 @@ import { NewestNewsComponent } from "./components/newest-news/newest-news.compon
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CarouselComponent } from "./components/carousel/carousel.component";
+import { Carousel2Component } from "./components/carousel2/carousel2.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewsSmallComponent, LatestNewsComponent, NewestNewsComponent, HeaderComponent, FooterComponent, CarouselComponent],
+  imports: [RouterOutlet, NewsSmallComponent, LatestNewsComponent, NewestNewsComponent, HeaderComponent, FooterComponent, CarouselComponent, Carousel2Component],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
