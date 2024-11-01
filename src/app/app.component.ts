@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NewsSmallComponent } from "./components/news-small/news-small.component";
 import { ApiService } from './services/api.service';
 import { LatestNewsComponent } from "./components/popular-news/popular-news.component";
@@ -9,6 +9,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CarouselComponent } from "./components/carousel/carousel.component";
 import { Carousel2Component } from "./components/carousel2/carousel2.component";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { Carousel2Component } from "./components/carousel2/carousel2.component";
 export class AppComponent {
   title = 'news-portal';
   data: any = {};
+  hideDashboard: boolean = false;
 
   // Clear temp local storage
   @HostListener('window:beforeunload', ['$event'])
@@ -27,6 +29,16 @@ export class AppComponent {
     localStorage.clear();
   }
   
-  constructor(private api: ApiService, private localCache: LocalCacheService){
+  constructor(private api: ApiService, private localCache: LocalCacheService, private router: Router){
+    
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if(event.urlAfterRedirects !== '/'){
+          this.hideDashboard = true;
+        }
+        else
+          this.hideDashboard = false;
+      }
+    });
   }
 }
