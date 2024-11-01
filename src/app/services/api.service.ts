@@ -62,7 +62,6 @@ export class ApiService {
     if(filter.sort){
       strQuery += `&sort=${filter.sort}`
     }
-    console.log(environment.API_URL + `/svc/search/v2/articlesearch.json?q=${keyword}&page=${page}${strQuery}&api-key=${environment.api_keys}`)
     return this.http.get(environment.API_URL + `/svc/search/v2/articlesearch.json?q=${keyword}&page=${page}${strQuery}&api-key=${environment.api_keys}`)
   }
 

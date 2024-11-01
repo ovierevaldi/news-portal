@@ -14,7 +14,6 @@ import { DatePipe } from '@angular/common';
   templateUrl: './search-result-page.component.html'
 })
 export class SearchResultPageComponent implements OnInit {
-
   constructor(
     private route: ActivatedRoute, 
     public loadingService: LoadingService, 
@@ -28,13 +27,15 @@ export class SearchResultPageComponent implements OnInit {
   currentSort: string = 'relevance';
   begin_date: Date | null = null;
   end_date: Date | null = null;
-  currentFilter: NewsFilter = {begin_date: this.begin_date, end_date: this.end_date, sort: this.currentSort}
+  currentFilter: NewsFilter = {begin_date: this.begin_date, end_date: this.end_date, sort: this.currentSort};
 
+  showFilter: boolean = true;
+  filter_title: string = 'Hide';
   disableFormButton = false;
 
   ngOnInit(): void {
     this.keyword = this.route.snapshot.paramMap.get('keyword') ?? this.keyword;
-    // this.searchFeed(this.keyword, 1);
+    this.searchFeed(this.keyword, this.currentFilter, 1);
   }
 
   async searchFeed(keyword: string, filter: NewsFilter, page: number){
@@ -146,5 +147,22 @@ export class SearchResultPageComponent implements OnInit {
   
   goToURL(url: string) {
     window.open(url, '_blank');
+  }
+
+  toggleFilterUI() {
+    this.showFilter = !this.showFilter;
+    
+    const filterContainer = document.getElementById('filter-container');
+
+    if(filterContainer && this.showFilter){
+      filterContainer.style.maxHeight = '200px';
+      filterContainer.style.overflow = 'visible';
+      this.filter_title = 'Hide'
+    }
+    else if(filterContainer && !this.showFilter){
+      filterContainer.style.maxHeight = '0px';
+      filterContainer.style.overflow = 'hidden';
+      this.filter_title = 'Show'
+    }
   }
 }

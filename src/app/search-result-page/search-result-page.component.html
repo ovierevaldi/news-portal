@@ -1,7 +1,14 @@
 <div>
  
-    <p class="font-semibold italic text-2xl w-full mb-4">Searched keywords: {{keyword}} <span class="text-end text-sm   font-normal w-full italic">({{total_result}} result)</span> </p>
-    <div class="flex">
+    <div class="flex justify-between">
+        <p class="font-semibold italic text-2xl mb-4">Searched keywords: {{keyword}} 
+            <span class="text-end text-sm font-normal italic">({{total_result}} result)</span> 
+        </p>
+
+        <button class="hover:underline" (click)="toggleFilterUI()">{{filter_title}}</button>
+    </div>
+    
+    <div class="flex transition-all duration-200 ease-in-out max-h-[400px]" id="filter-container">
         <form class="flex gap-x-4" (submit)="applyNewsFilter($event)" id="filter-news-form">
             <div>
                 <span class="mb-2 font-semibold text-lg">Range:</span>
@@ -26,22 +33,27 @@
                     (change)="changeSort($event)"
                     [value]="currentSort"
                     name="sort_filter"
-                    class="outline outline-1 p-2 rounded-lg"
+                    class="border border-primary-one p-2 rounded-lg"
                     >
                     <option value="oldest">Oldest</option>
                     <option value="newest">Newest</option>
                     <option value="relevance" selected>Relevance</option>
                 </select>
             </div>
-            
             <div class="flex gap-x-2 w-full">
-                <button [disabled]="disableFormButton" id="form-filter-button" type="submit" class="block p-2 border border-primary-one rounded-lg h-fit px-6 bg-primary-two text-white disabled:opacity-50" >Filter!</button>
+                <button 
+                    [disabled]="disableFormButton" 
+                    id="form-filter-button" 
+                    type="submit" 
+                    class="block p-2 border border-primary-one rounded-lg h-fit px-6 bg-primary-two text-white disabled:opacity-50" >
+                    Filter!
+                </button>
                 <p id="error-form" class="text-red-500 bg-rose-300 px-4 py-2 rounded-lg h-fit hidden"></p>
             </div>
         </form>
-        <div>
     </div>
-    </div>
+    
+    
     <br>
     <br>
     @if(!loadingService.get()){
