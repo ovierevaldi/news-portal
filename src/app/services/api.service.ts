@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { retryWhen, throttleTime } from 'rxjs';
+import { Observable, retryWhen, throttleTime } from 'rxjs';
 import { LocalCacheService } from './local-cache.service';
 import { getMostPopularURL } from '../../lib/helper';
 
@@ -41,20 +41,11 @@ export class ApiService {
     })
   }
 
-  searchFeed(keyword: string){
-    this.http.get(environment.API_URL + `/svc/search/v2/articlesearch.json?q=${keyword}&api-key=${environment.api_keys}`)
-    .subscribe(response => {
-      console.log(response)
-      return response;
-    })
+  searchFeed(keyword: string, page: number = 1): Observable<any>{
+    return this.http.get(environment.API_URL + `/svc/search/v2/articlesearch.json?q=${keyword}&page=${page}&api-key=${environment.api_keys}`)
   }
 
-  getSections(){
-    console.log(environment.API_URL + `/svc/news/v3/content/section-list.json?api-key=${environment.api_keys}`)
-    this.http.get(environment.API_URL + `/svc/news/v3/content/section-list.json?api-key=${environment.api_keys}`)
-    .subscribe(response => {
-      console.log(response)
-      return response;
-    })
+  getSections(): Observable<any>{
+    return this.http.get<any>(environment.API_URL + `/svc/news/v3/content/section-list.json?api-key=${environment.api_keys}`)
   }
 }

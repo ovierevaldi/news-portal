@@ -1,0 +1,16 @@
+<div class="flex gap-x-4 items-center justify-center">
+    <button
+        [disabled]="!canPrev()"
+        (click)="prevClick()"
+        class="px-4 py-2 bg-primary-two text-white rounded-md disabled:opacity-50">
+        Prev
+    </button>
+    <p class="font-serif">Current page: <span class="font-semibold">{{currentIndex}} / {{limit }}</span></p>
+
+    <button 
+        [disabled]="!canNext()"
+        (click)="nextClick()"
+        class="px-4 py-2 bg-primary-two text-white rounded-md disabled:opacity-50">
+        Next
+    </button>
+</div>

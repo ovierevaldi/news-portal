@@ -1,22 +1,59 @@
 <div>
-    <p class="font-semibold italic text-2xl">Searched keywords: {{keyword}}</p>
+ 
+    <p class="font-semibold italic text-2xl w-full mb-4">Searched keywords: {{keyword}} <span class="text-end text-sm   font-normal w-full italic">({{total_result}} result)</span> </p>
+    <div class="flex">
+        <form class="flex gap-x-4" (submit)="applyNewsFilter($event)" id="filter-news-form">
+            <div>
+                <span class="mb-2 font-semibold text-lg">Range:</span>
+                <div class="flex gap-x-2">
+                    <div>
+                        <p class="text-lg">Begin:</p>
+                        <input type="date" 
+                            name="start_date_filter"
+                        (change)="changeStartDate($event)"
+                        >
+                    </div>
+                    <div>
+                        <p class="text-lg">End: </p>
+                        <input type="date" value=""  
+                        name="end_date_filter" 
+                        (change)="changeEndDate($event)">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <select 
+                    (change)="changeSort($event)"
+                    [value]="currentSort"
+                    name="sort_filter"
+                    class="outline outline-1 p-2 rounded-lg"
+                    >
+                    <option value="oldest">Oldest</option>
+                    <option value="newest">Newest</option>
+                    <option value="relevance" selected>Relevance</option>
+                </select>
+            </div>
+            
+            <div class="flex gap-x-2 w-full">
+                <button [disabled]="disableFormButton" id="form-filter-button" type="submit" class="block p-2 border border-primary-one rounded-lg h-fit px-6 bg-primary-two text-white disabled:opacity-50" >Filter!</button>
+                <p id="error-form" class="text-red-500 bg-rose-300 px-4 py-2 rounded-lg h-fit hidden"></p>
+            </div>
+        </form>
+        <div>
+    </div>
+    </div>
     <br>
     <br>
     @if(!loadingService.get()){
-        <div>
-            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-9 md:gap-12 lg:gap-12 xl:gap-x-14 2xl:gap-16 px-1 sm:px-3 xl:px-5">
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-                <app-news-small class="lg:place-self-center"></app-news-small>
-            </div>
+        <div class="space-y-8">
+                @for (feed of searchedFeeds; track $index) {
+                    <a class="border-b hover:underline cursor-pointer block" (click)="goToURL(feed.web_url)">
+                        <p class="font-semibold text-lg mb-2">{{feed.headline.main}}</p>
+                        <p class="text-primary-three text-sm">{{feed.abstract}}</p>
+                    </a>
+                }
         </div>
+        <br>
     }
     @else {
         <div class="flex items-center w-full justify-center">
@@ -29,5 +66,5 @@
             <p class="text-center text-primary-one text-xl font-semibold">Loading...</p>
         </div>
     }
-    
+    <app-pagination [limit]="total_result / 10" (currentIndexChange)="changeNewsPage($event)"></app-pagination>
 </div>
