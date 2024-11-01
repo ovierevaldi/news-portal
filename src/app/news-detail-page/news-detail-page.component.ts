@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
+import { CarouselComponent } from "../components/carousel/carousel.component";
+import { Carousel2Component } from '../components/carousel2/carousel2.component';
 
 @Component({
   selector: 'app-news-detail-page',
   standalone: true,
-  imports: [],
+  imports: [Carousel2Component],
   templateUrl: './news-detail-page.component.html'
 })
 export class NewsDetailPageComponent implements OnInit{
