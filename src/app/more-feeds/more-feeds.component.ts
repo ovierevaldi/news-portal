@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NewsSmallComponent } from "../components/news-small/news-small.component";
 import { ApiService } from '../services/api.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-more-feeds',
@@ -10,7 +10,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   imports: [CommonModule, NewsSmallComponent,],
   templateUrl: './more-feeds.component.html',
 })
-export class MoreFeedsComponent {
+export class MoreFeedsComponent implements OnInit {
   displayCarouselBy: number = 6;
   selectedFeedSections = ['arts', 'business', 'food', 'movies', 'science', 'sports', 'technology'];
   test_object1 = [
@@ -10470,6 +10470,19 @@ export class MoreFeedsComponent {
   constructor(private apiService: ApiService, private breakPointObserver: BreakpointObserver){
     // this.fetchAllApi();
     this.setNewsSectionData(this.test_object1)
+  }
+
+  ngOnInit(): void {
+    this.breakPointObserver.observe([
+        Breakpoints.HandsetPortrait,
+      ]).subscribe((state: BreakpointState) => {
+        console.log(state)
+        if (state.matches) {
+            if (state.breakpoints[Breakpoints.HandsetPortrait]) {
+                this.displayCarouselBy = 3;
+            } 
+        }
+      });
   }
 
   nextSlide(section: string) {
