@@ -52,7 +52,7 @@
             </div>
         </form>
     </div>
-    @if(!loadingService.get()){
+    @if(!loadingService.getState()){
         <div class="space-y-8">
                 @for (feed of searchedFeeds; track $index) {
                     <a class="border-b cursor-pointer block" (click)="goToURL(feed.web_url)">

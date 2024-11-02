@@ -1,13 +1,21 @@
-<!-- <div class="w-44">
-    <img [src]="url" alt="" class="rounded-xl w-40">
-    <p class="font-bold font-serif py-2 max-h-20 overflow-hidden whitespace-pre-wrap text-ellipsis">{{news?.title}}</p>
-    <div class="flex text-[0.5rem]">
-        <span class="w-1/2">{{news?.updated | date: 'mediumDate'}}</span> <span class="w-1/2">{{news?.source}}</span>
+<div 
+    class="cursor-pointer hover:scale-95 transition-transform duration-150"
+    (click)="goToUrl()"
+    >
+    <img [src]="url" alt="" class="rounded-xl object-contain w-full">
+    <p 
+        class="font-bold font-serif hover:underline py-2 sm:py-3 text-base/5 sm:text-base md:text-lg xl:text-lg/7">
+        {{news?.title}}
+    </p>
+    <div class="flex text-xs text-primary-four">
+        <span class="min-w-[80px]">{{news?.published_date | date: 'mediumDate'}}</span> <span class="min-w-[80px]">{{news?.source}}</span>
     </div>
-</div> -->
+</div>
+
+<!-- font-bold font-serif py-2 max-h-20 overflow-hidden whitespace-pre-wrap text-ellipsis -->
 
 <!-- <div class="cursor-pointer hover:scale-110 ease-linear duration-75" routerLink="/news-detail/{{this.news?.id}}"> -->
-    <div class="cursor-pointer hover:scale-110 ease-linear duration-75" routerLink="/news-detail/1">
+<!-- <div class="cursor-pointer hover:scale-110 ease-linear duration-75">
     <img 
         src="./placeholder_image.jpg" 
         alt="" 
@@ -20,4 +28,4 @@
         <span class="min-w-[80px]">1 Hour Ago</span> 
         <span class="min-w-[80px]">CNN Indonesia</span>
     </div>
-</div>
+</div> -->

@@ -24,4 +24,9 @@ export class HeaderComponent {
     this.router.navigateByUrl('/',)
     .then(() => this.router.navigate(['/search/' + keyword]))
   }
+
+  goToMoreFeeds(){
+    this.router.navigateByUrl('/',)
+    .then(() => this.router.navigate(['/more-feeds/' ]))
+  }
 }

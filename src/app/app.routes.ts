@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SearchResultPageComponent } from './search-result-page/search-result-page.component';
-import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
+import { MoreFeedsComponent } from './more-feeds/more-feeds.component';
 
 export const routes: Routes = [
     {path: 'search/:keyword', component: SearchResultPageComponent},
-    {path: 'news-detail/:id', component: NewsDetailPageComponent},
+    {path: 'more-feeds', component: MoreFeedsComponent},
 ];

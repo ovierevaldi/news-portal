@@ -18,20 +18,36 @@ export class NewsSmallComponent implements OnChanges {
 
   //Set image thumbnail
   ngOnChanges(changes: SimpleChanges): void {
+   
     if (changes['news']) {
       const currentNews = changes['news'].currentValue;
       const media = currentNews.media;
-
-      if(media.length > 0){
-        this.setCoverImage(media[0]['media-metadata']);
+      const multimedia = currentNews.multimedia
+      
+      if(media){
+        if(media.length > 0){
+          this.setCoverImage(media[0]['media-metadata']);
+        }
+        else{
+          this.url = getNoImage();
+        }
       }
-      else{
-        this.url = getNoImage();
+      else if(multimedia){
+        if(multimedia.length > 0){
+          this.url = multimedia[1].url;
+        }
+        else{
+          this.url = getNoImage();
+        }
       }
     }
   }
 
   setCoverImage(mediaMetaData: any[]){
-    this.url = mediaMetaData[1]['url']
+    this.url = mediaMetaData[2]['url']
+  }
+
+  goToUrl() {
+    window.open(this.news?.url)
   }
 }

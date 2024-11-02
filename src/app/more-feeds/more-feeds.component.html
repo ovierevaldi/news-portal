@@ -1,0 +1,35 @@
+@for (feed of getMapEntries(sectionFeeds); track $index) {
+    <div class="p-4">
+        <p class="font-semibold text-xl mb-2 capitalize">{{feed[0]}} Section</p>
+        
+        <div class="relative">
+            <div 
+                class="flex overflow-hidden" 
+                id="carousel-parent-{{feed[0]}}">
+                @for (f of feed[1]; track $index) {
+                    <app-news-small 
+                        [news]="f"
+                        class="w-1/3 sm:w-1/4 md:w-1/5 lg:w-1/6 flex-shrink-0 carousel-child transition-transform duration-300 ease-in-out px-2 py-2">
+                    </app-news-small>
+                }
+            </div>
+
+            <div class="absolute flex items-center top-1/4 ml-4">
+                <button
+                    (click)="prevSlide(feed[0])"
+                    [disabled]="(currentIndexSection.get(feed[0]) ?? 0) <= 0"
+                    class="disabled:opacity-40 bg-primary-two bg-opacity-80 rounded-full">
+                    <img src="./icons/arrow-left-round.svg" alt="" class="w- h-10">
+                </button>
+            </div>
+            <div class="absolute flex items-center top-1/4 right-0 mr-4">
+                <button
+                    (click)="nextSlide(feed[0])"
+                    [disabled]="(currentIndexSection.get(feed[0]) ?? 0) >= ((feed[1].length / displayCarouselBy) - 1)"
+                    class="disabled:opacity-40 bg-primary-two bg-opacity-80 rounded-full">
+                    <img src="./icons/arrow-right-round.svg" alt="" class="w-10 h-10">
+                </button>
+            </div>
+        </div>
+    </div>
+}

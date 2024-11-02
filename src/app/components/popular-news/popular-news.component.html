@@ -1,7 +1,6 @@
 <div class="">
     <div class="mb-5 md:mb-7 lg:mb-12 xl:mb-10 2xl:mb-12 flex justify-between xl:block">
         <p class="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:mb-5 2xl:mb-7">Popular News</p>
-        
         <select 
             id="popular-news-duration"
             [value]="currentDuration"
@@ -11,21 +10,20 @@
             <option value="7">This Week</option>
             <option value="30">This Month</option>
         </select>
-        
     </div>
    
-    <!-- @if(!loadingService.get()){
-        <div class="grid grid-cols-2 gap-y-8 gap-x-4">
+    @if(!loadingService.getState()){
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-9 md:gap-12 lg:gap-12 xl:gap-x-14 2xl:gap-16 px-1 sm:px-3 xl:px-5">
             @for (news of popularNewsList; track $index) {
                 <app-news-small [news]="news"></app-news-small>
             }
         </div>
     }
     @else {
-        <p class="text-center text-sky-500">Loading...</p>
-    } -->
+        <app-loading></app-loading>
+    }
 
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-9 md:gap-12 lg:gap-12 xl:gap-x-14 2xl:gap-16 px-1 sm:px-3 xl:px-5">
+    <!-- <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-9 md:gap-12 lg:gap-12 xl:gap-x-14 2xl:gap-16 px-1 sm:px-3 xl:px-5">
         <app-news-small class="lg:place-self-center"></app-news-small>
         <app-news-small class="lg:place-self-center"></app-news-small>
         <app-news-small class="lg:place-self-center"></app-news-small>
@@ -36,6 +34,6 @@
         <app-news-small class="lg:place-self-center"></app-news-small>
         <app-news-small class="lg:place-self-center"></app-news-small>
         <app-news-small class="lg:place-self-center"></app-news-small>
-    </div>
-
+    </div> -->
+    
 </div>

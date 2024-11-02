@@ -1,29 +1,36 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe],
   templateUrl: './carousel.component.html'
 })
 export class CarouselComponent {
-
-  images: string[] = ['./test_1.jpeg','./test_2.jpg','./test_3.jpg','./test_4.jpg','./test_5.png'];
-
+  @Input()images: string[] = [];
   currentIndex: number = 0;
+
+  @Output() onImageClick: any = new EventEmitter<any>();
+  @Output() onNextClick: any = new EventEmitter<any>();
+  @Output() onPrevClick: any = new EventEmitter<any>();
+
+  @Input() publishedDate: Date | undefined = undefined;
+  @Input() source: string | undefined = '';
   
   nextSlide() {
       if(this.currentIndex < this.images.length - 1){
         this.currentIndex++;
-        this.slide(this.currentIndex)
-      }    
+        this.slide(this.currentIndex);
+        this.onNextClick.emit(this.currentIndex)
+      }
   }
 
   prevSlide() {
       if(this.currentIndex > 0){
         this.currentIndex--;
-        this.slide(this.currentIndex)
+        this.slide(this.currentIndex);
+        this.onPrevClick.emit(this.currentIndex)
       }
   }
 
@@ -39,5 +46,9 @@ export class CarouselComponent {
         child.style.transform = `translateX(${-index * 100}%)` 
       });
     }
+  }
+
+  handleOnClick() {
+    this.onImageClick.emit();
   }
 }

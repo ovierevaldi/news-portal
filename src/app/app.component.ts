@@ -8,13 +8,13 @@ import { NewestNewsComponent } from "./components/newest-news/newest-news.compon
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CarouselComponent } from "./components/carousel/carousel.component";
-import { Carousel2Component } from "./components/carousel2/carousel2.component";
+import { MoreFeedsComponent } from "./more-feeds/more-feeds.component";
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewsSmallComponent, LatestNewsComponent, NewestNewsComponent, HeaderComponent, FooterComponent, CarouselComponent, Carousel2Component],
+  imports: [RouterOutlet, NewsSmallComponent, LatestNewsComponent, NewestNewsComponent, HeaderComponent, FooterComponent, CarouselComponent, MoreFeedsComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
@@ -40,5 +40,10 @@ export class AppComponent {
           this.hideDashboard = false;
       }
     });
+  }
+
+  goToMoreFeeds(){
+    this.router.navigateByUrl('/',)
+    .then(() => this.router.navigate(['/more-feeds/' ]))
   }
 }

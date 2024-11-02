@@ -19,12 +19,8 @@ export class ApiService {
     // this.searchFeed('election')
   }
 
-  getNewestFeed(){
-    this.http.get(environment.API_URL + `/svc/news/v3/content/all/all.json?api-key=${environment.api_keys}`)
-    .subscribe(response => {
-      console.log(response)
-      return response;
-    })
+  getNewestFeed(source: 'all' | 'nyt' = 'all', section: string = 'all'){
+    return this.http.get<any>(environment.API_URL + `/svc/news/v3/content/${source}/${section}.json?api-key=${environment.api_keys}`)
   }
 
   getMostPopular(duration: string){

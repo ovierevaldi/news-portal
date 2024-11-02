@@ -20,7 +20,7 @@ export class LoadingService {
     this.loadingSubject.next(!this.loadingSubject.value);
   }
 
-  get(): boolean{
+  getState(): boolean{
     return this.loadingSubject.getValue();
   }
 

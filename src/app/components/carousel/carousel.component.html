@@ -1,37 +1,47 @@
-<div 
-    id="carousel-parent"
-    class="flex overflow-hidden relative rounded-xl">
-    @for (image of images; track $index) {
-        <img 
-            src="{{image}}" 
-            alt=""
-            class="carousel-child transition-transform duration-300 ease-in-out"
-        >
-    }
+<div class="relative">
+    <div 
+        id="carousel-parent"
+        class="flex overflow-hidden relative rounded-xl w-[450px] mx-auto transition-transform duration-300 hover:scale-105">
+        @for (image of images; track $index) {
+            <img
+                (click)="handleOnClick()"
+                src="{{image}}" 
+                alt=""
+                class="carousel-child transition-transform duration-300 ease-in-out cursor-pointer w-full flex-shrink-0"
+            >
+        }
+        <div class="flex justify-between mt-4 absolute top-0-0 text-secondary-one w-full px-3 opacity-50 shadow-2xl italic">
+            @if (publishedDate) {<p>{{publishedDate | date : 'short': 'UTC'}}</p>}
+            @if (source) {<p>{{source}}</p>}
+        </div>
 
-    <div class="flex absolute w-full h-full justify-between px-4 items-center">
+        <div class="flex absolute w-full justify-center bottom-0 px-4 gap-x-2 mb-2">
+            @for (image of images; track $index) {
+                <button 
+                    class=" py-1 px-[0.4rem] rounded-full"
+                    [ngClass]="{ 'bg-secondary-one opacity-90': $index === currentIndex, 'opacity-70 bg-primary-three': $index !== currentIndex }"
+                    (click)="slide($index)">
+                </button>
+            }
+        </div>
+    </div>
+
+    <div class="flex h-full items-center absolute top-0 ml-10">
         <button
             (click)="prevSlide()"
-            class="h-fit rounded-full disabled:opacity-40"
+            class="bg-primary-two bg-opacity-60 rounded-full disabled:bg-opacity-40"
             [disabled]="currentIndex <= 0">
-            <img src="./icons/arrow-left-round.svg" alt="" class="w-8 h-8">
-        </button>
-        <button 
-            (click)="nextSlide()"
-            class="h-fit rounded-full disabled:opacity-40"
-            id="next-btn"
-            [disabled]="currentIndex >= images.length - 1">
-            <img src="./icons/arrow-right-round.svg" alt="" class="w-8 h-8">
+            <img src="./icons/arrow-left-round.svg" alt="" class="w-12 h-12">
         </button>
     </div>
 
-    <div class="flex absolute w-full justify-center bottom-0 px-4 gap-x-3 mb-2">
-        @for (image of images; track $index) {
-            <button 
-                class=" p-2 rounded-full"
-                [ngClass]="{ 'bg-secondary-one opacity-95': $index === currentIndex, 'opacity-70 bg-primary-three': $index !== currentIndex }"
-                (click)="slide($index)">
-            </button>
-        }
+    <div class="flex h-full items-center absolute top-0 right-0 mr-10">
+        <button 
+            (click)="nextSlide()"
+            class="bg-primary-two bg-opacity-60 rounded-full disabled:bg-pacity-40"
+            id="next-btn"
+            [disabled]="currentIndex >= images.length - 1">
+            <img src="./icons/arrow-right-round.svg" alt="" class="w-12 h-12">
+        </button>
     </div>
 </div>
