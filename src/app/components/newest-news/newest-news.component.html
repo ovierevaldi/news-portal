@@ -9,7 +9,8 @@
                     (onPrevClick)="goToNews($event)"
                     [publishedDate]="currentFeed?.published_date"
                     [source]="currentFeed?.source"
-                    [images]="getAllMultimediaImages()">
+                    [images]="getAllMultimediaImages()"
+                    [description]="(currentFeed?.title ?? ' ')">
                 </app-carousel>
             </div>
 

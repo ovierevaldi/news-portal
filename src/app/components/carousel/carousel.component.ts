@@ -17,6 +17,7 @@ export class CarouselComponent {
 
   @Input() publishedDate: Date | undefined = undefined;
   @Input() source: string | undefined = '';
+  @Input() description: string = ' ';
   
   nextSlide() {
       if(this.currentIndex < this.images.length - 1){

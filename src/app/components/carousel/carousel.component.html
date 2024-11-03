@@ -1,7 +1,7 @@
 <div class="relative">
     <div 
         id="carousel-parent"
-        class="flex overflow-hidden relative rounded-xl w-[450px] mx-auto transition-transform duration-300 hover:scale-105">
+        class="flex overflow-hidden relative rounded-xl max-w-[450px] mx-auto transition-transform duration-300 hover:scale-105">
         @for (image of images; track $index) {
             <img
                 (click)="handleOnClick()"
@@ -10,23 +10,28 @@
                 class="carousel-child transition-transform duration-300 ease-in-out cursor-pointer w-full flex-shrink-0"
             >
         }
-        <div class="flex justify-between mt-4 absolute top-0-0 text-secondary-one w-full px-3 opacity-50 shadow-2xl italic">
+
+        <div class="flex justify-between mt-4 absolute top-0 text-secondary-one w-full px-3 opacity-50 shadow-2xl italic">
             @if (publishedDate) {<p>{{publishedDate | date : 'short': 'UTC'}}</p>}
             @if (source) {<p>{{source}}</p>}
         </div>
+        <div class="absolute bottom-0 w-full h-[80px] md:h-[93px] flex justify-between flex-col mb-3">
+            <p class="text-secondary-one px-3 text-lg md:text-xl font-serif font-semibold max-h-14 overflow-hidden lg:opacity-0" 
+                style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">{{description}}</p>
 
-        <div class="flex absolute w-full justify-center bottom-0 px-4 gap-x-2 mb-2">
-            @for (image of images; track $index) {
-                <button 
-                    class=" py-1 px-[0.4rem] rounded-full"
-                    [ngClass]="{ 'bg-secondary-one opacity-90': $index === currentIndex, 'opacity-70 bg-primary-three': $index !== currentIndex }"
-                    (click)="slide($index)">
-                </button>
-            }
+            <div class="flex justify-center gap-x-2">
+                @for (image of images; track $index) {
+                    <button 
+                        class=" py-1 px-[0.3rem] md:px-[0.4rem] rounded-full"
+                        [ngClass]="{ 'bg-secondary-one opacity-90': $index === currentIndex, 'opacity-70 bg-primary-three': $index !== currentIndex }"
+                        (click)="slide($index)">
+                    </button>
+                }
+            </div>
         </div>
     </div>
 
-    <div class="flex h-full items-center absolute top-0 ml-10">
+    <div class="flex h-full items-center absolute top-0 ml-2 xl:ml-10">
         <button
             (click)="prevSlide()"
             class="bg-primary-two bg-opacity-60 rounded-full disabled:bg-opacity-40"
@@ -35,7 +40,7 @@
         </button>
     </div>
 
-    <div class="flex h-full items-center absolute top-0 right-0 mr-10">
+    <div class="flex h-full items-center absolute top-0 right-0 mr-2 xl:mr-10">
         <button 
             (click)="nextSlide()"
             class="bg-primary-two bg-opacity-60 rounded-full disabled:bg-pacity-40"
