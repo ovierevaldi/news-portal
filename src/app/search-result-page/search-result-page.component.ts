@@ -6641,8 +6641,8 @@ export class SearchResultPageComponent implements OnInit {
       '(min-width: 1024px)',
     ]).subscribe((state: BreakpointState) => {
       if (state.matches) {
-        if (state.breakpoints['(min-width: 1024px)']) {
-              this.showFilter = true;
+        if (state.breakpoints['(min-width: 768px)']) {
+              // this.toggleFilterUI()
         }
       }
   });

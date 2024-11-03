@@ -2,15 +2,15 @@
     <button
         [disabled]="!canPrev()"
         (click)="prevClick()"
-        class="px-4 py-2 bg-primary-two text-white rounded-md disabled:opacity-50">
+        class="px-2 py-1 md:px-4 md:py-2 bg-primary-two text-white rounded-md disabled:opacity-50 text-sm lg:text-base">
         Prev
     </button>
-    <p class="font-serif">Current page: <span class="font-semibold">{{currentIndex}} / {{limit }}</span></p>
+    <p class="font-serif text-sm lg:text-base">Current page: <span class="font-semibold">{{currentIndex}} / {{limit }}</span></p>
 
     <button 
         [disabled]="!canNext()"
         (click)="nextClick()"
-        class="px-4 py-2 bg-primary-two text-white rounded-md disabled:opacity-50">
+        class="px-2 py-1 md:px-4 md:py-2 bg-primary-two text-white rounded-md disabled:opacity-50 text-sm lg:text-base">
         Next
     </button>
 </div>
