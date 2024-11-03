@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    api_keys: process.env['api_keys'] || '',
-    api_secret: process.env['api_secret'] || '',
-    API_URL: process.env['API_URL'] || ''
+    api_keys: "u8BpLsJ4NIMTsbtkjXfjYERxUQQ0GzWO",
+    api_secret: "hUt12dDIhShllpLX",
+    API_URL: 'https://api.nytimes.com',
 }
