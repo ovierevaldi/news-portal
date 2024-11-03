@@ -1,54 +1,67 @@
 <div>
  
-    <div class="flex justify-between">
-        <p class="font-semibold italic text-2xl mb-4">Searched keywords: {{keyword}} 
+    <div class="flex justify-between items-start mb-4">
+        <div>
+            <p class="font-semibold italic text-2xl mb-0 xl:mb-4">Searched keywords: {{keyword}} 
+            </p>
             <span class="text-end text-sm font-normal italic">({{total_result}} result)</span> 
-        </p>
-
-        <button class="hover:underline" (click)="toggleFilterUI()">{{filter_title}}</button>
+        </div>
+        <button class="hover:underline text-sm xl:text-base p-2" (click)="toggleFilterUI()">{{filter_title}}</button>
     </div>
     
-    <div class="flex transition-all duration-300 ease-in-out max-h-[400px] mb-8" id="filter-container">
-        <form class="flex gap-x-4" (submit)="applyNewsFilter($event)" id="filter-news-form">
+    <div class="flex transition-all duration-300 ease-in-out max-h-0 overflow-hidden mb-0 xl:max-h-[400px] xl:mb-8" id="filter-container">
+        <form class="flex gap-x-4 flex-wrap gap-y-4" (submit)="applyNewsFilter($event)" id="filter-news-form">
             <div>
-                <span class="mb-2 font-semibold text-lg">Range:</span>
+                <span class="mb-2 font-semibold text-sm xl:text-lg">Range:</span>
                 <div class="flex gap-x-2">
                     <div>
-                        <p class="text-lg">Begin:</p>
+                        <p class="text-sm xl:text-lg">Begin:</p>
                         <input type="date" 
                             name="begin_date_filter"
                         (change)="changeBeginDate($event)"
                         >
                     </div>
                     <div>
-                        <p class="text-lg">End: </p>
+                        <p class="text-sm xl:text-lg">End: </p>
                         <input type="date" value=""  
                         name="end_date_filter" 
                         (change)="changeEndDate($event)">
                     </div>
                 </div>
             </div>
-            <div>
+            
+            <div class="flex gap-x-4">
                 <select 
                     (change)="changeSort($event)"
                     [value]="currentSort"
                     name="sort_filter"
-                    class="border border-primary-one p-2 rounded-lg"
+                    class="border border-primary-one p-2 rounded-lg text-xs xl:text-lg"
                     >
-                    <option value="oldest">Oldest</option>
-                    <option value="newest">Newest</option>
-                    <option value="relevance" selected>Relevance</option>
+                    <option value="oldest" class="text-xs xl:text-lg">Oldest</option>
+                    <option value="newest" class="text-xs xl:text-lg">Newest</option>
+                    <option value="relevance" class="text-xs xl:text-lg" selected>Relevance</option>
                 </select>
+
+                <button 
+                    [disabled]="disableFormButton" 
+                    id="form-filter-button" 
+                    type="submit" 
+                    class="block xl:hidden p-2 border border-primary-one rounded-lg h-fit px-6 bg-primary-two text-white disabled:opacity-50
+                    text-xs xl:text-lg" >
+                    Filter!
+                </button>
             </div>
+
             <div class="flex gap-x-2 w-full">
                 <button 
                     [disabled]="disableFormButton" 
                     id="form-filter-button" 
                     type="submit" 
-                    class="block p-2 border border-primary-one rounded-lg h-fit px-6 bg-primary-two text-white disabled:opacity-50" >
+                    class="xl:block p-2 border border-primary-one rounded-lg h-fit px-6 bg-primary-two text-white disabled:opacity-50
+                    text-xs xl:text-lg hidden" >
                     Filter!
                 </button>
-                <p id="error-form" class="text-red-500 bg-rose-300 px-4 py-2 rounded-lg h-fit hidden"></p>
+                <p id="error-form" class="text-red-500 bg-rose-300 px-4 py-2 rounded-lg h-fit hidden text-xs xl:text-lg"></p>
             </div>
         </form>
     </div>
@@ -56,12 +69,12 @@
         <div class="space-y-8">
                 @for (feed of searchedFeeds; track $index) {
                     <a class="border-b cursor-pointer block" (click)="goToURL(feed.web_url)">
-                        <p class="font-semibold text-lg mb-2 hover:underline">{{feed.headline.main}}</p>
+                        <p class="font-semibold text-sm xl:text-lg mb-2 hover:underline">{{feed.headline.main}}</p>
                        <div class="flex justify-between">
-                            <p class="text-primary-three text-sm hover:underline max-w-[80%] whitespace-nowrap overflow-hidden text-ellipsis">
+                            <p class="text-primary-three text-xs xl:text-sm hover:underline max-w-[80%] whitespace-nowrap overflow-hidden text-ellipsis">
                                 {{feed.abstract}}
                             </p>
-                            <p class="text-primary-three text-sm">{{feed.pub_date | date: 'mediumDate': 'UTC'}}</p>
+                            <p class="text-primary-three text-xs xl:text-sm">{{feed.pub_date | date: 'mediumDate': 'UTC'}}</p>
                        </div>
                     </a>
                 }

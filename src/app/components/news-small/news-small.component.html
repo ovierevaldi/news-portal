@@ -4,11 +4,18 @@
     >
     <img [src]="url" alt="" class="rounded-xl object-contain w-full">
     <p 
-        class="font-bold font-serif hover:underline py-2 sm:py-3 text-base/5 sm:text-base md:text-lg xl:text-lg/7">
+        class="font-bold font-serif hover:underline py-2 sm:py-3 text-xs sm:text-sm md:text-base xl:text-lg/7
+                md:overflow-hidden md:max-h-16 lg:max-h-full">
+        <!-- class="font-bold font-serif hover:underline py-2 sm:py-3 text-base/5 sm:text-base md:text-lg xl:text-lg/7"> -->
         {{news?.title}}
     </p>
-    <div class="flex text-xs text-primary-four">
-        <span class="min-w-[80px]">{{news?.published_date | date: 'mediumDate'}}</span> <span class="min-w-[80px]">{{news?.source}}</span>
+    <div class="flex gap-x-1 sm:gap-x-3 text-xs text-primary-four">
+        <span class="xl:min-w-[80px] overflow-hidden whitespace-nowrap text-ellipsis">
+            {{news?.published_date | date: 'mediumDate'}}
+        </span> 
+        <span class="xl:min-w-[80px] overflow-hidden whitespace-nowrap text-ellipsis">
+            {{news?.source}}
+        </span>
     </div>
 </div>
 

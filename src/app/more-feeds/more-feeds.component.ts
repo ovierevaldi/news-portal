@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NewsSmallComponent } from "../components/news-small/news-small.component";
 import { ApiService } from '../services/api.service';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-more-feeds',
@@ -10485,7 +10485,7 @@ export class MoreFeedsComponent implements OnInit {
                 this.displayCarouselBy = 4;
             }
         }
-      });
+    });
   }
 
   nextSlide(section: string) {

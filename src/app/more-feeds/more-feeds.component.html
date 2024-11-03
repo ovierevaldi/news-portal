@@ -19,7 +19,7 @@
                     (click)="prevSlide(feed[0])"
                     [disabled]="(currentIndexSection.get(feed[0]) ?? 0) <= 0"
                     class="disabled:opacity-40 bg-primary-two bg-opacity-80 rounded-full">
-                    <img src="./icons/arrow-left-round.svg" alt="" class="w- h-10">
+                    <img src="./icons/arrow-left-round.svg" alt="" class="w-8 lg:w-10 xl:w-12">
                 </button>
             </div>
             <div class="absolute flex items-center top-1/4 right-0 mr-4">
@@ -27,7 +27,7 @@
                     (click)="nextSlide(feed[0])"
                     [disabled]="(currentIndexSection.get(feed[0]) ?? 0) >= ((feed[1].length / displayCarouselBy) - 1)"
                     class="disabled:opacity-40 bg-primary-two bg-opacity-80 rounded-full">
-                    <img src="./icons/arrow-right-round.svg" alt="" class="w-10 h-10">
+                    <img src="./icons/arrow-right-round.svg" alt="" class="w-8 lg:w-10 xl:w-12">
                 </button>
             </div>
         </div>
