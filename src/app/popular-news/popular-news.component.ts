@@ -1,11 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NewsSmallComponent } from "../components/news-small/news-small.component";
 import { ApiService } from '../services/api.service';
 import { NewsData } from '../../../types/news.model';
-import { LocalCacheService } from '../services/local-cache.service';
-import { environment } from '../../environments/environment.development';
 import { LoadingService } from '../services/loading.service';
-import { getMostPopularURL } from '../../lib/helper';
 import { LoadingComponent } from "../components/loading/loading.component";
 
 @Component({
