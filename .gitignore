@@ -42,8 +42,5 @@ testem.log
 Thumbs.db
 
 
-#environments
-/src/environments
-
 #public_files
 public
