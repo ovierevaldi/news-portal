@@ -13,11 +13,21 @@
     </div>
    
     @if(!loadingService.getState()){
-        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-9 md:gap-12 lg:gap-12 xl:gap-x-14 2xl:gap-16 px-1 sm:px-3 xl:px-5">
-            @for (news of popularNewsList; track $index) {
-                <app-news-small [news]="news"></app-news-small>
-            }
-        </div>
+        @if (loadingService.getApiState()) {
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-9 md:gap-12 lg:gap-12 xl:gap-x-14 2xl:gap-16 px-1 sm:px-3 xl:px-5">
+                @for (news of popularNewsList; track $index) {
+                    <app-news-small [news]="news"></app-news-small>
+                }
+            </div>
+        }
+        @else {
+            <div class="flex justify-center">
+                <span class="text-xs md:text-sm lg:text-base xl:text-lg text-center text-red-500 bg-rose-300 px-4 py-2 rounded-lg">
+                    {{errorApiString}}
+                </span>
+            </div>
+        }
+        
     }
     @else {
         <app-loading></app-loading>

@@ -1,0 +1,41 @@
+<div class="">
+    <p class="font-bold text-xl sm:text-xl md:text-3xl lg:text-3xl mb-5 md:mb-7 lg:mb-8 xl:mb-10 2xl:mb-8">Newest Feed</p>   
+    <div class="lg:grid lg:grid-cols-2 gap-4 lg:gap-x-6 px-1 sm:px-3 xl:px-5">
+        @if (!loading.getState()) {
+            @if(loading.getApiState()){
+                <div class="relative">
+                    <app-carousel 
+                        (onImageClick)="goToDetailsNews()" 
+                        (onNextClick)="goToNews($event)" 
+                        (onPrevClick)="goToNews($event)"
+                        [publishedDate]="currentFeed?.published_date"
+                        [source]="currentFeed?.source"
+                        [images]="getAllMultimediaImages()"
+                        [description]="(currentFeed?.title ?? ' ')">
+                    </app-carousel>
+                </div>
+                <div class="hidden lg:block">
+                    <p class="text-base lg:text-lg text-justify">
+                        <span class="text-3xl inline-block mb-3 font-serif hover:underline" (click)="goToDetailsNews()">{{currentFeed?.title}}</span>
+                        <br> 
+                        <span class="inline-block text-lg font-light">
+                            <span class="">{{getSentence('first', currentFeed?.abstract)}} {{getSentence('rest', currentFeed?.abstract)}}</span> 
+                            <span class="font-normal italic cursor-pointer hover:underline" (click)="goToDetailsNews()"> read more...</span>
+                        </span>
+                    </p>
+                </div>
+            }
+        }
+    </div>
+    @if(loading.getState()){
+        <app-loading></app-loading>
+    }
+
+    @if (!loading.getApiState()) {
+        <div class="flex justify-center">
+            <span class="text-xs md:text-sm lg:text-base xl:text-lg text-center text-red-500 bg-rose-300 px-4 py-2 rounded-lg">
+                {{errorApiString}}
+            </span>
+        </div>
+    }
+</div>

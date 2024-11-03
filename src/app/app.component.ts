@@ -2,19 +2,19 @@ import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NewsSmallComponent } from "./components/news-small/news-small.component";
 import { ApiService } from './services/api.service';
-import { LatestNewsComponent } from "./components/popular-news/popular-news.component";
 import { LocalCacheService } from './services/local-cache.service';
-import { NewestNewsComponent } from "./components/newest-news/newest-news.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CarouselComponent } from "./components/carousel/carousel.component";
 import { MoreFeedsComponent } from "./more-feeds/more-feeds.component";
 import { Subscription } from 'rxjs';
+import { NewestNewsComponent } from './newest-news/newest-news.component';
+import { PopularNewsComponent } from './popular-news/popular-news.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NewsSmallComponent, LatestNewsComponent, NewestNewsComponent, HeaderComponent, FooterComponent, CarouselComponent, MoreFeedsComponent],
+  imports: [RouterOutlet, NewsSmallComponent, PopularNewsComponent, NewestNewsComponent, HeaderComponent, FooterComponent, CarouselComponent, MoreFeedsComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
