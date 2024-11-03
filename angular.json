@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/news-portal",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,6 +59,14 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/news-portal/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.app.json"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
