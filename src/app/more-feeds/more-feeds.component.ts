@@ -11,7 +11,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
   templateUrl: './more-feeds.component.html',
 })
 export class MoreFeedsComponent implements OnInit {
-  displayCarouselBy: number = 6;
+  displayCarouselBy: number = 3;
   selectedFeedSections = ['arts', 'business', 'food', 'movies', 'science', 'sports', 'technology'];
   test_object1 = [
       {
@@ -10474,13 +10474,16 @@ export class MoreFeedsComponent implements OnInit {
 
   ngOnInit(): void {
     this.breakPointObserver.observe([
-        Breakpoints.HandsetPortrait,
+        '(min-width: 768px)',
+        '(min-width: 1024px)',
       ]).subscribe((state: BreakpointState) => {
-        console.log(state)
         if (state.matches) {
-            if (state.breakpoints[Breakpoints.HandsetPortrait]) {
-                this.displayCarouselBy = 3;
-            } 
+          if (state.breakpoints['(min-width: 1024px)']) {
+                this.displayCarouselBy = 5;
+            }
+            else if (state.breakpoints['(min-width: 768px)']) {
+                this.displayCarouselBy = 4;
+            }
         }
       });
   }
