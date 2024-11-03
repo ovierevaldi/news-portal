@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "dist/news-portal/server/server.mjs",
+        "use": "@vercel/node",
+        "config": { "includeFiles": ["dist/news-portal/browser/**"] }
+      },
+      {
+        "src": "dist/news-portal/browser/**",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "dist/news-portal/server/server.mjs" }
+    ]
+  }
