@@ -79,7 +79,7 @@ export class MoreFeedsComponent implements OnInit {
           listSectionNews.push(response);
         },
         error: (e) => {
-            this.loadingService.failApiState();
+            // this.loadingService.failApiState();
             this.errorApiString = 'Error Fetching Api, Please try again later';
             this.loadingService.hide();
         },
@@ -95,7 +95,7 @@ export class MoreFeedsComponent implements OnInit {
 
   setNewsSectionData(listSectionNews: any[]){
     this.selectedFeedSections.forEach((section, index) => {
-      if(listSectionNews[index].results){
+      if(listSectionNews[index]){
         this.sectionFeeds.set(section, (listSectionNews[index].results));
       }
       this.currentIndexSection.set(section, 0);
